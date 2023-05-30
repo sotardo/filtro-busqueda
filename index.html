@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Filtro de usuarios</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Filtro de usuarios</h1>
+  <div>
+    <input type="text" id="filtroInput" placeholder="Buscar por nombre o dirección IP">
+    <button onclick="filtrarUsuarios()">Buscar</button>
+  </div>
+  <table id="tablaUsuarios">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Empresa</th>
+      <th>Servidores</th>
+      <th>Usuario</th>
+      <th>Contraseña</th>
+      <th>Sector</th>
+      <th>Interno</th>
+      <th>Email</th>
+      <th>Impresora</th>
+      <th>IP</th>
+    </tr>
+  </table>
+  <button onclick="window.location.href = 'formulario.html'">Agregar Empleado</button>
+  <script src="script.js"></script>
+</body>
+</html>
