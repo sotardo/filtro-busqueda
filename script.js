@@ -109,4 +109,11 @@ window.onload = function () {
 
   var empresaInput = document.getElementById('empresaInput');
   empresaInput.addEventListener('change', filtrarUsuarios);
+
+  var filtroInput = document.getElementById('filtroInput');
+  filtroInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      filtrarUsuarios();
+    }
+  });
 };
