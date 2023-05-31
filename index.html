@@ -11,12 +11,13 @@
   <div class="container">
     <input type="text"  id="filtroInput" placeholder="Buscar por nombre o dirección IP">
     <button type="button" class="btn btn-primary btn-sm" id="button-buscar" onclick="filtrarUsuarios()">Buscar</button>
-    <label for="empresa" id="empresa"></label>
-      <select id="empresa" name="empresa" required>
-        <option value="pire">Pire</option>
-        <option value="valley">Valley</option>
-        <option value="hicsa">Hicsa</option>
-      </select>
+    <label for="empresaInput"></label>
+    <select id="empresaInput">
+      <option value="">Todas </option>
+      <option value="1">Pire</option>
+      <option value="2">Valley</option>
+      <option value="3">Hicsa</option>
+    </select>
       <div button class="btn btn-primary btn-sm" id="button-container" onclick="window.location.href = 'formulario.html'">Agregar Empleado</button> </div>
   </div>
   <div>

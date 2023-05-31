@@ -17,6 +17,9 @@ function filtrarUsuarios() {
   var filtroInput = document.getElementById('filtroInput');
   var filtro = filtroInput.value.toUpperCase();
 
+  var empresaInput = document.getElementById('empresaInput');
+  var idEmpresa = empresaInput.value;
+
   var tablaUsuarios = document.getElementById('tablaUsuarios');
   var filas = tablaUsuarios.getElementsByTagName('tr');
 
@@ -30,10 +33,10 @@ function filtrarUsuarios() {
     var usuario = usuarios[i];
     var apellido = usuario.apellido.toUpperCase();
     var nombre = usuario.nombre.toUpperCase();
-    var ip = usuario.ip.toUpperCase(); // Nuevo campo "ip" agregado
-    
+    var ip = usuario.ip.toUpperCase();
 
-    if (nombre.includes(filtro) || ip.includes(filtro) || apellido.includes(filtro) ) {
+    if ((nombre.includes(filtro) || ip.includes(filtro) || apellido.includes(filtro)) &&
+        (idEmpresa === '' || usuario.idEmpresa.toString() === idEmpresa)) {
       var fila = tablaUsuarios.insertRow();
       fila.innerHTML = '<td>' + usuario.id + '</td>' +
                        '<td>' + usuario.nombre + '</td>' +
@@ -46,7 +49,7 @@ function filtrarUsuarios() {
                        '<td>' + usuario.interno + '</td>' +
                        '<td>' + usuario.email + '</td>' +
                        '<td>' + usuario.impresora + '</td>' +
-                       '<td>' + usuario.ip + '</td>'; // Nuevo campo "ip" agregado
+                       '<td>' + usuario.ip + '</td>';
     }
   }
 }
@@ -54,7 +57,7 @@ function filtrarUsuarios() {
 function guardarUsuario(event) {
   event.preventDefault();
 
-  var id = document.getElementById("id").value; // Nuevo campo "id" agregado
+  var id = document.getElementById("id").value;
   var nombre = document.getElementById("nombre").value;
   var apellido = document.getElementById("apellido").value;
   var empresa = document.getElementById("empresa").value;
@@ -65,10 +68,10 @@ function guardarUsuario(event) {
   var interno = document.getElementById("interno").value;
   var email = document.getElementById("email").value;
   var impresora = document.getElementById("impresora").value;
-  var ip = document.getElementById("ip").value; // Nuevo campo "ip" agregado
+  var ip = document.getElementById("ip").value;
 
   var data = new FormData();
-  data.append("id", id); // Nuevo campo "id" agregado
+  data.append("id", id);
   data.append("nombre", nombre);
   data.append("apellido", apellido);
   data.append("empresa", empresa);
@@ -79,7 +82,7 @@ function guardarUsuario(event) {
   data.append("interno", interno);
   data.append("email", email);
   data.append("impresora", impresora);
-  data.append("ip", ip); // Nuevo campo "ip" agregado
+  data.append("ip", ip);
 
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "guardar_usuario.php", true);
@@ -87,12 +90,9 @@ function guardarUsuario(event) {
     if (xhr.status === 200) {
       var response = xhr.responseText;
       if (response === "success") {
-        // Limpiar el formulario
         document.getElementById("formulario").reset();
-        // Mostrar mensaje de éxito
         alert("Usuario guardado exitosamente.");
       } else {
-        // Mostrar mensaje de error
         alert("Error al guardar el usuario.");
       }
     }
@@ -103,4 +103,10 @@ function guardarUsuario(event) {
 // Cargar usuarios al cargar la página
 window.onload = function () {
   cargarUsuarios();
+
+  var buscarButton = document.getElementById('button-buscar');
+  buscarButton.addEventListener('click', filtrarUsuarios);
+
+  var empresaInput = document.getElementById('empresaInput');
+  empresaInput.addEventListener('change', filtrarUsuarios);
 };

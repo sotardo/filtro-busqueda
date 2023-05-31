@@ -48,7 +48,7 @@
   }
 
 
-  #empresa {
+  #empresaInput {
     position: absolute;
     top: 59px;
     right: 1125px;
@@ -57,7 +57,7 @@
 
   }  
 
-  #empresa:hover {
+  #empresaInput:hover {
     cursor: pointer;
   }
 
