@@ -10,7 +10,18 @@ if ($conn->connect_error) {
   die("Error de conexión: " . $conn->connect_error);
 }
 
-$id = $_POST['id']; // Nuevo campo "id" agregado
+// Consulta SQL para obtener el último ID cargado
+$sql = "SELECT MAX(id) AS max_id FROM usuarios";
+
+// Ejecutar la consulta
+$result = $conn->query($sql);
+
+// Obtener el último ID cargado
+$ultimoId = $result->fetch_assoc()['max_id'];
+
+// Calcular el siguiente ID
+$nuevoId = $ultimoId + 1;
+
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 $empresa = $_POST['empresa'];
@@ -35,7 +46,7 @@ if ($empresa == "pire") {
 }
 
 $sql = "INSERT INTO usuarios (id, nombre, apellido, empresa, servidores, usuario, contraseña, sector, interno, email, impresora, idEmpresa, ip)
-        VALUES ('$id', '$nombre', '$apellido', '$empresa', '$servidores', '$usuario', '$contraseña', '$sector', '$interno', '$email', '$impresora', '$idEmpresa', '$ip')";
+        VALUES ('$nuevoId', '$nombre', '$apellido', '$empresa', '$servidores', '$usuario', '$contraseña', '$sector', '$interno', '$email', '$impresora', '$idEmpresa', '$ip')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Usuario guardado exitosamente";

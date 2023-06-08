@@ -38,13 +38,13 @@ function filtrarUsuarios() {
     if ((nombre.includes(filtro) || ip.includes(filtro) || apellido.includes(filtro)) &&
         (idEmpresa === '' || usuario.idEmpresa.toString() === idEmpresa)) {
       var fila = tablaUsuarios.insertRow();
-      fila.innerHTML = '<td>' + usuario.id + '</td>' +
+      fila.innerHTML = '<td >' + usuario.id + '</td>' +
                        '<td>' + usuario.nombre + '</td>' +
                        '<td>' + usuario.apellido + '</td>' +
                        '<td>' + usuario.empresa + '</td>' +
                        '<td>' + usuario.servidores + '</td>' +
-                       '<td>' + usuario.usuario + '</td>' +
-                       '<td>' + usuario.contraseña + '</td>' +
+                       '<td class = "resaltado">' + usuario.usuario + '</td>' +
+                       '<td class = "resaltado">' + usuario.contraseña + '</td>' +
                        '<td>' + usuario.sector + '</td>' +
                        '<td>' + usuario.interno + '</td>' +
                        '<td>' + usuario.email + '</td>' +
@@ -99,7 +99,6 @@ function guardarUsuario(event) {
   };
   xhr.send(data);
 }
-
 // Cargar usuarios al cargar la página
 window.onload = function () {
   cargarUsuarios();

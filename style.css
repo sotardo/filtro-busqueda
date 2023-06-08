@@ -6,8 +6,15 @@
     color: black;
   }
   
+  td {
+    background-color: rgb(216, 221, 253);
+    font-weight: 500;
+  }
+
+
+  
   table {
-      margin-top: 80px;
+      margin-top: 0px;
       margin-bottom: 20px;
       margin-left: auto;
       margin-right: auto;
@@ -30,18 +37,15 @@
   }
   
   #tablaUsuarios tbody tr {
-    border-bottom: 1px solid #ccc; /* Ajusta el estilo y color de la línea separadora según tus preferencias */
+    border-bottom: 1px solid #000000; /* Ajusta el estilo y color de la línea separadora según tus preferencias */
   } 
-
-  
-
 
 #button-container {
     display: flex;
     justify-content: end;
     position: absolute;
     top: 59px;
-    right: 143px;
+    right: 135px;
     align-items: center;
     background-color: #2e4e7e;
     border: none;
@@ -50,8 +54,8 @@
 
   #empresaInput {
     position: absolute;
-    top: 59px;
-    right: 1125px;
+    top: 9%;
+    left: 10%;
     height: 30px;
     width: 100px;
 
@@ -64,20 +68,40 @@
   #button-buscar {
     display: flex;
     position: absolute;
-    right: 500px;
+    right: 400px;
     top: 59px;
     background-color: #2e4e7e;
     border: none;
 
   }
 
-  #filtroInput {
-    width: 500px; /* Ajusta el valor según el tamaño deseado */
-    height: 40px; /* Ajusta el valor según el tamaño deseado */
-    font-size: 16px; /* Ajusta el valor según el tamaño de fuente deseado */
-    margin: 50px auto 0 ; /* Agrega un margen superior de 50px */
+  .input-container {
+    position: relative;
+    width: 600px;
+    margin: 50px auto 0;
     margin-left: 150px;
+  }
+  
+  #filtroInput {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
     display: block;
     border: 1.5px solid;
-    
+    padding-right: 30px;
+    text-indent: 24px;
   }
+  
+  .search-icon {
+    position: absolute;
+    top: 51%;
+    left: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #999;
+  }
+  
+  .search-icon i {
+    font-size: 16px;
+  }
+  
