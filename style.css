@@ -6,11 +6,14 @@
     color: black;
   }
   
-  td {
-    background-color: rgb(216, 221, 253);
-    font-weight: 500;
+  .color-fondo-1 {
+    background-color: #d4d3d3; /* Primer color de fondo */
   }
-
+  
+  .color-fondo-2 {
+    background-color: #d9d8ff; /* Segundo color de fondo */
+  }
+  
 
   
   table {
@@ -32,12 +35,12 @@
    
   tr:first-child {
     background-color: #2e4e7e;
-    color: #ddd;
+    color: #dddddd;
   
   }
   
   #tablaUsuarios tbody tr {
-    border-bottom: 1px solid #000000; /* Ajusta el estilo y color de la línea separadora según tus preferencias */
+    border-bottom: 2px solid #000000; /* Ajusta el estilo y color de la línea separadora según tus preferencias */
   } 
 
 #button-container {
@@ -45,7 +48,7 @@
     justify-content: end;
     position: absolute;
     top: 59px;
-    right: 135px;
+    right: 200px;
     align-items: center;
     background-color: #2e4e7e;
     border: none;
@@ -54,16 +57,28 @@
 
   #empresaInput {
     position: absolute;
-    top: 9%;
-    left: 10%;
+    top: 6.1%;
+    left: 10.3%;
     height: 30px;
-    width: 100px;
+    width: 80px;
 
   }  
+
+  #text-input {
+    display: flex;
+    font-weight: bold;
+    margin-bottom: 5px;
+    position: relative;
+    top: -60px;
+    left: -110px;
+  }
 
   #empresaInput:hover {
     cursor: pointer;
   }
+
+
+
 
   #button-buscar {
     display: flex;
@@ -83,13 +98,16 @@
   }
   
   #filtroInput {
-    width: 100%;
+    width: 160%;
     height: 40px;
     font-size: 16px;
-    display: block;
+    display: flex;
     border: 1.5px solid;
     padding-right: 30px;
     text-indent: 24px;
+    color: #0f0f0f;
+    background-color: rgb(235, 238, 255);
+  
   }
   
   .search-icon {

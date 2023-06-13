@@ -34,22 +34,24 @@ function filtrarUsuarios() {
     var apellido = usuario.apellido.toUpperCase();
     var nombre = usuario.nombre.toUpperCase();
     var ip = usuario.ip.toUpperCase();
+    var sector = usuario.sector.toUpperCase();
 
-    if ((nombre.includes(filtro) || ip.includes(filtro) || apellido.includes(filtro)) &&
+    if ((nombre.includes(filtro) || ip.includes(filtro) || apellido.includes(filtro) || sector.includes(filtro))  &&
         (idEmpresa === '' || usuario.idEmpresa.toString() === idEmpresa)) {
+      var claseCSS = i % 2 === 0 ? 'color-fondo-1' : 'color-fondo-2';    
       var fila = tablaUsuarios.insertRow();
-      fila.innerHTML = '<td >' + usuario.id + '</td>' +
-                       '<td>' + usuario.nombre + '</td>' +
-                       '<td>' + usuario.apellido + '</td>' +
-                       '<td>' + usuario.empresa + '</td>' +
-                       '<td>' + usuario.servidores + '</td>' +
-                       '<td class = "resaltado">' + usuario.usuario + '</td>' +
-                       '<td class = "resaltado">' + usuario.contraseña + '</td>' +
-                       '<td>' + usuario.sector + '</td>' +
-                       '<td>' + usuario.interno + '</td>' +
-                       '<td>' + usuario.email + '</td>' +
-                       '<td>' + usuario.impresora + '</td>' +
-                       '<td>' + usuario.ip + '</td>';
+      fila.innerHTML = '<td class="' + claseCSS + '">' + usuario.id + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.nombre + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.apellido + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.empresa + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.servidores + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.usuario + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.contraseña + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.sector + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.interno + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.email + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.impresora + '</td>' +
+                        '<td class="' + claseCSS + '">' + usuario.ip + '</td>';
     }
   }
 }
