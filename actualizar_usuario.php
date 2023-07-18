@@ -35,21 +35,34 @@ if ($empresa == "pire") {
   $idEmpresa = 3;
 }
 
-$sql = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido', empresa='$empresa', servidores='$servidores', 
-        usuario='$usuario', contraseña='$contraseña', sector='$sector', interno='$interno', email='$email', 
-        impresora='$impresora', idEmpresa='$idEmpresa', ip='$ip' WHERE id='$id'";
+// Verificar si el usuario existe antes de actualizarlo
+$selectSql = "SELECT id FROM usuarios WHERE id = ?";
+$stmtSelect = $conn->prepare($selectSql);
+$stmtSelect->bind_param("i", $id);
+$stmtSelect->execute();
+$stmtSelect->store_result();
 
-$result = $conn->query("SELECT * FROM usuarios WHERE id='$id' LIMIT 1");
+if ($stmtSelect->num_rows > 0) {
+  // El usuario existe, realizar la actualización
+  $updateSql = "UPDATE usuarios SET nombre=?, apellido=?, empresa=?, servidores=?, usuario=?, contraseña=?, sector=?, interno=?, email=?, impresora=?, idEmpresa=?, ip=? WHERE id=?";
+  $stmtUpdate = $conn->prepare($updateSql);
+  $stmtUpdate->bind_param("ssssssssssisi", $nombre, $apellido, $empresa, $servidores, $usuario, $contraseña, $sector, $interno, $email, $impresora, $idEmpresa, $ip, $id);
 
-if ($result->num_rows > 0) {
-  if ($conn->query($sql) === TRUE) {
-    echo "Usuario actualizado exitosamente";
+  if ($stmtUpdate->execute()) {
+    if ($stmtUpdate->affected_rows > 0) {
+      echo "success";
+    } else {
+      echo "No se encontró el usuario para actualizar";
+    }
   } else {
-    echo "Error al actualizar el usuario: " . $conn->error;
+    echo "Error al ejecutar la consulta: " . $stmtUpdate->error;
   }
+
+  $stmtUpdate->close();
 } else {
   echo "No se encontró el usuario para actualizar";
 }
 
+$stmtSelect->close();
 $conn->close();
 ?>
