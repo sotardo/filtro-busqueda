@@ -10,7 +10,17 @@ if ($conn->connect_error) {
   die("Error de conexión: " . $conn->connect_error);
 }
 
-$id = $_POST['id']; // ID del usuario a actualizar
+// Consulta SQL para obtener el último ID cargado
+$sql = "SELECT MAX(id) AS max_id FROM usuarios";
+
+// Ejecutar la consulta
+$result = $conn->query($sql);
+
+// Obtener el último ID cargado
+$ultimoId = $result->fetch_assoc()['max_id'];
+
+// Calcular el siguiente ID
+$nuevoId = $ultimoId + 1;
 
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
@@ -35,20 +45,13 @@ if ($empresa == "pire") {
   $idEmpresa = 3;
 }
 
-$sql = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido', empresa='$empresa', servidores='$servidores', 
-        usuario='$usuario', contraseña='$contraseña', sector='$sector', interno='$interno', email='$email', 
-        impresora='$impresora', idEmpresa='$idEmpresa', ip='$ip' WHERE id='$id'";
+$sql = "INSERT INTO usuarios (id, nombre, apellido, empresa, servidores, usuario, contraseña, sector, interno, email, impresora, idEmpresa, ip)
+        VALUES ('$nuevoId', '$nombre', '$apellido', '$empresa', '$servidores', '$usuario', '$contraseña', '$sector', '$interno', '$email', '$impresora', '$idEmpresa', '$ip')";
 
-$result = $conn->query("SELECT * FROM usuarios WHERE id='$id' LIMIT 1");
-
-if ($result->num_rows > 0) {
-  if ($conn->query($sql) === TRUE) {
-    echo "Usuario actualizado exitosamente";
-  } else {
-    echo "Error al actualizar el usuario: " . $conn->error;
-  }
+if ($conn->query($sql) === TRUE) {
+  echo "Usuario guardado exitosamente";
 } else {
-  echo "No se encontró el usuario para actualizar";
+  echo "Error al guardar el usuario: " . $conn->error;
 }
 
 $conn->close();

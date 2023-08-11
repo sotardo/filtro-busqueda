@@ -36,8 +36,9 @@ function filtrarUsuarios() {
     var ip = usuario.ip.toUpperCase();
     var sector = usuario.sector.toUpperCase();
     var usu = usuario.usuario.toUpperCase();
+    var serv = usuario.servidores.toUpperCase();
 
-    if ((nombre.includes(filtro) || ip.includes(filtro) || apellido.includes(filtro) || usu.includes(filtro) ||  sector.includes(filtro))  &&
+    if ((nombre.includes(filtro) || ip.includes(filtro) || serv.includes(filtro) || apellido.includes(filtro) || usu.includes(filtro) ||  sector.includes(filtro))  &&
         (idEmpresa === '' || usuario.idEmpresa.toString() === idEmpresa)) {
       var claseCSS = i % 2 === 0 ? 'color-fondo-1' : 'color-fondo-2';    
       var fila = tablaUsuarios.insertRow();
@@ -135,6 +136,7 @@ function actualizarUsuario(event) {
         if (response === "success") {
           alert("Usuario actualizado exitosamente.");
           // Realizar cualquier acción adicional después de actualizar el usuario
+          window.location.href = "index.html";
         } else {
           alert("Error al actualizar el usuario.");
         }
