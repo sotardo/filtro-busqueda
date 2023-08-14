@@ -7,11 +7,11 @@
   }
   
   .color-fondo-1 {
-    background-color: #d4d3d3; /* Primer color de fondo */
+    background-color: #ffffff; /* Primer color de fondo */
   }
   
   .color-fondo-2 {
-    background-color: #d9d8ff; /* Segundo color de fondo */
+    background-color: #c8c8d8; /* Segundo color de fondo */
   }
   
 
@@ -78,7 +78,15 @@
   }
 
 
+  #button-hardware {
+    display: flex;
+    position: absolute;
+    left: 350px;
+    top: 59px;
+    background-color: #2e4e7e;
+    border: none;
 
+  }
 
   #button-buscar {
     display: flex;

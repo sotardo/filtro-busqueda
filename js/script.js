@@ -9,7 +9,7 @@ function cargarUsuarios() {
       usuarios = JSON.parse(xhr.responseText);
     }
   };
-  xhr.open('GET', 'filtrar.php', true);
+  xhr.open('GET', '../php/filtrar.php', true);
   xhr.send();
 }
 
@@ -54,14 +54,14 @@ function filtrarUsuarios() {
   '<td class="' + claseCSS + '">' + usuario.email + '</td>' +
   '<td class="' + claseCSS + '">' + usuario.impresora + '</td>' +
   '<td class="' + claseCSS + '">' + usuario.ip + '</td>' +
-  '<td class="' + claseCSS + '"><a href="formulario_editar.html?id=' + usuario.id + '" onclick="editarUsuario(' + usuario.id + ')">Editar</a></td>';
+  '<td class="' + claseCSS + '"><a href="../html/formulario_editar.html?id=' + usuario.id + '" onclick="editarUsuario(' + usuario.id + ')">Editar</a></td>';
 
     }
   }
 }
 
 function editarUsuario(id) {
-  window.location.href = 'formulario_editar.html?id=' + id;
+  window.location.href = '../html/formulario_editar.html?id=' + id;
 }
 
 function obtenerIdUsuario() {
@@ -129,14 +129,14 @@ function actualizarUsuario(event) {
     data.append("ip", ip);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "actualizar_usuario.php", true); // Archivo PHP para actualizar el usuario
+    xhr.open("POST", "../php/actualizar_usuario.php", true); // Archivo PHP para actualizar el usuario
     xhr.onload = function () {
       if (xhr.status === 200) {
         var response = xhr.responseText;
         if (response === "success") {
           alert("Usuario actualizado exitosamente.");
           // Realizar cualquier acción adicional después de actualizar el usuario
-          window.location.href = "index.html";
+          window.location.href = "../html/index.html";
         } else {
           alert("Error al actualizar el usuario.");
         }
@@ -180,7 +180,7 @@ function guardarUsuario(event) {
   data.append("ip", ip);
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "guardar_usuario.php", true);
+  xhr.open("POST", "../php/guardar_usuario.php", true);
   xhr.onload = function () {
     if (xhr.status === 200) {
       var response = xhr.responseText;
@@ -213,7 +213,7 @@ window.onload = function () {
   });
 
   // Autocompletar el formulario de edición si se está en la página de edición
-  if (window.location.pathname.includes('formulario_editar.html')) {
+  if (window.location.pathname.includes('../html/formulario_editar.html')) {
     autocompletarFormulario();
   }
 };
