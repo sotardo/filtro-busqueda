@@ -21,7 +21,7 @@ $ultimoId = $result->fetch_assoc()['max_id'];
 
 // Calcular el siguiente ID
 $nuevoId = $ultimoId + 1;
-
+$equipo = $_POST['equipo'];
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
 $ubicacion = $_POST['ubicacion'];
@@ -29,9 +29,10 @@ $so = $_POST['so'];
 $procesador = $_POST['procesador'];
 $ram = $_POST['ram'];
 $disco = $_POST['disco'];
+$gpu = $_POST['gpu'];
 
-$sql = "INSERT INTO hardware (id, nombre, apellido, ubicacion, so, procesador, ram, disco)
-        VALUES ('$nuevoId', '$nombre', '$apellido', '$ubicacion', '$so', '$procesador', '$ram', '$disco')";
+$sql = "INSERT INTO hardware (id, equipo, nombre, apellido, ubicacion, so, procesador, ram, disco, gpu)
+        VALUES ('$nuevoId', '$equipo', '$nombre', '$apellido', '$ubicacion', '$so', '$procesador', '$ram', '$disco', '$gpu')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Hardware guardado exitosamente";

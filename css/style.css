@@ -24,6 +24,7 @@
       width: 80%;
     }
     
+    
 
   
   th, td {
@@ -42,6 +43,7 @@
   #tablaUsuarios tbody tr {
     border-bottom: 2px solid #000000; /* Ajusta el estilo y color de la línea separadora según tus preferencias */
   } 
+  
 
 #button-container {
     display: flex;
