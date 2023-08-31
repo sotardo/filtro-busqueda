@@ -66,6 +66,15 @@
 
   }  
 
+  #ubicacion {
+    position: absolute;
+    top: 6.1%;
+    left: 10.3%;
+    height: 30px;
+    width: 80px;
+
+  }  
+
   #text-input {
     display: flex;
     font-weight: bold;

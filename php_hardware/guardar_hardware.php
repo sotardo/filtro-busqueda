@@ -21,6 +21,7 @@ $ultimoId = $result->fetch_assoc()['max_id'];
 
 // Calcular el siguiente ID
 $nuevoId = $ultimoId + 1;
+
 $equipo = $_POST['equipo'];
 $nombre = $_POST['nombre'];
 $apellido = $_POST['apellido'];
@@ -31,8 +32,27 @@ $ram = $_POST['ram'];
 $disco = $_POST['disco'];
 $gpu = $_POST['gpu'];
 
-$sql = "INSERT INTO hardware (id, equipo, nombre, apellido, ubicacion, so, procesador, ram, disco, gpu)
-        VALUES ('$nuevoId', '$equipo', '$nombre', '$apellido', '$ubicacion', '$so', '$procesador', '$ram', '$disco', '$gpu')";
+$idUbicacion = null; // Variable para almacenar el idUbicacion según la ubicación seleccionada
+
+// Asignar el valor correcto al idUbicacion según la ubicación seleccionada
+if ($ubicacion == "pire") {
+  $idUbicacion = 1;
+} elseif ($ubicacion == "valley") {
+  $idUbicacion = 2;
+} elseif ($ubicacion == "hicsa") {
+  $idUbicacion = 3;
+} elseif ($ubicacion == "usados") {
+  $idUbicacion = 4;
+} elseif ($ubicacion == "roca") {
+  $idUbicacion = 5;
+} elseif ($ubicacion == "zapala") {
+  $idUbicacion = 6;
+} elseif ($ubicacion == "pin") {
+  $idUbicacion = 7;
+}
+
+$sql = "INSERT INTO hardware (id, equipo, nombre, apellido, ubicacion, so, procesador, ram, disco, gpu, idUbicacion)
+        VALUES ('$nuevoId', '$equipo', '$nombre', '$apellido', '$ubicacion', '$so', '$procesador', '$ram', '$disco', '$gpu', '$idUbicacion')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Hardware guardado exitosamente";

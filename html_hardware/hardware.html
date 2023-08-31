@@ -16,6 +16,17 @@
     <button type="button" class="btn btn-primary btn-sm" id="button-buscar" onclick="filtrarHardware()">Buscar</button>
     <div button class="btn btn-primary btn-sm" id="button-container" onclick="window.location.href = 'formulario_hardware.html'">Agregar Hardware</button> </div>
   </div>
+  <label for="ubicacion"></label>
+  <select id="ubicacion" name="ubicacion" required>
+    <option value="todas">Todas</option>
+    <option value="pire">Pire</option>
+    <option value="valley">Valley</option>
+    <option value="hicsa">Hicsa</option>
+    <option value="roca">Roca</option>
+    <option value="zapala">Zapala</option>
+    <option value="pin">Pin</option>
+    <option value="usados">Usados</option>
+  </select>
   <div>
     <table id="tablaHardware">
       <tr>

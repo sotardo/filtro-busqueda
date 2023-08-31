@@ -1,11 +1,9 @@
 var hardware = [];
 
 function cargarHardware() {
-  // Realizar la solicitud AJAX para obtener el hardware desde "filtrar_hardware.php"
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4 && xhr.status === 200) {
-      // Procesar la respuesta JSON y guardar el hardware en la variable "hardware"
       hardware = JSON.parse(xhr.responseText);
     }
   };
@@ -17,15 +15,16 @@ function filtrarHardware() {
   var filtroInput = document.getElementById('filtroInput');
   var filtro = filtroInput.value.toUpperCase();
 
+  var ubicacionSelect = document.getElementById('ubicacion');
+  var idUbicacion = ubicacionSelect.value;
+
   var tablaHardware = document.getElementById('tablaHardware');
   var filas = tablaHardware.getElementsByTagName('tr');
 
-  // Vaciar la tabla, excepto la primera fila que contiene los encabezados
   for (var i = filas.length - 1; i > 0; i--) {
     tablaHardware.deleteRow(i);
   }
 
-  // Recargar los datos filtrados en la tabla
   for (var i = 0; i < hardware.length; i++) {
     var item = hardware[i];
     var nombre = item.nombre.toUpperCase();
@@ -38,8 +37,9 @@ function filtrarHardware() {
     var gpu = item.gpu.toUpperCase();
     var equipo = item.equipo.toUpperCase();
 
-    if (nombre.includes(filtro) || apellido.includes(filtro) || sistemaOperativo.includes(filtro) ||
-        procesador.includes(filtro) || ram.includes(filtro) || disco.includes(filtro) || ubicacion.includes(filtro)) {
+    if ((nombre.includes(filtro) || apellido.includes(filtro) || sistemaOperativo.includes(filtro) ||
+        procesador.includes(filtro) || ram.includes(filtro) || disco.includes(filtro) || ubicacion.includes(filtro)) &&
+        (idUbicacion === 'todas' || item.ubicacion === idUbicacion)) {
       var claseCSS = i % 2 === 0 ? 'color-fondo-1' : 'color-fondo-2';    
       var fila = tablaHardware.insertRow();
       fila.innerHTML = '<td class="' + claseCSS + '">' + item.id + '</td>' +
@@ -206,10 +206,18 @@ window.onload = function () {
   var buscarButton = document.getElementById('button-buscar');
   buscarButton.addEventListener('click', filtrarHardware);
 
+  var ubicacionSelect = document.getElementById('ubicacion');
+  ubicacionSelect.addEventListener('change', filtrarHardware);
+
   var filtroInput = document.getElementById('filtroInput');
   filtroInput.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
       filtrarHardware();
     }
   });
+
+  // Autocompletar el formulario de edición si se está en la página de edición
+  if (window.location.pathname.includes('../html_hardware/formulario_editar_hardware.html')) {
+    autocompletarFormularioHardware();
+  }
 };
